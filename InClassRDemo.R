@@ -28,3 +28,5 @@ tt
 str(tt)
 ?read.tree
 attributes(tt)
+?%%
+?return

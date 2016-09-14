@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#Exercise 1 Loop statement to generate 8 \\n ending in an \"*\" on the next line\nlol <- 1:9\nlol\nfor (lol in 1:9){\n  cat(\"\\n\") \n  if (lol ==9) {\n    cat (\"*\")\n    }\n  }\n\n\n\n  #Exercise 2 modified loop printing 10 asterisks with each asterisk separated by one (&) with no spaces or new line characters\nfor (lol in 1:9){\n    cat (\"*\")\n  if (lol != 9) {cat (\"&\")\n    }\n  }\n\n\n\n# Exercise 3 by hand, figure out the initial values of these variables and values at the the start and end of each iteration of the loop\ndogs <- 10;\nfor (i in 1:5){\n  dogs <- dogs + 1; \n}\n#Answerstyle= iteration number = initial value, end value\n#1st iteration= 10, 11;2nd iteration= 11, 12; 3rd iteration=12, 13; 4th iteration= 13, 14; 5th iteration=14, 15\n\nmeatloaf <- 0; \nfor (i in 5:9){\n  meatloaf <- meatloaf - i + 1;\n  cat(meatloaf) \n  #answer style= iteration # (i= number)= start value, end value\n#1st iteration (i==5)= 0, -4; \n#2nd iteration (i==6)= -4, --9; \n#3rd iteration (i==7)=-9, -15; \n#4th iteration (i==8)= -15,-22; \n#5th iteration (i==9)=-22, -30\n  \n  bubbles <- 12;\n  for (i in -1:-4){\n    bubbles <- i;\n  }\n  #answer style= iteration number= start  value, end value\n#1st iteration = 12, -1\n  #2nd iteration= -1, -2\n  #3rd iteration = -2, -3\n  #4th iteration= -3, -4\n  \n  \n  \n  #exercise 4 modify this code so that it will print out a message during presidential as well as congressional election years\n  \n  ###you can use the if statement with the modulus operator to conditionally perform operations\n  years <- c( 2015, 2016, 2018, 2020, 2021)\n  for(ii in 1:length(years)){\n    if(years[ii] %% 2 == 0){\n      cat(years[ii], 'Hooray, congressional elections!', sep = '\\t', fill = T)\n    }\n    \n  }",
+    "created" : 1473892191099.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3356216929",
+    "id" : "A676CD7F",
+    "lastKnownWriteTime" : 1473895947,
+    "last_content_update" : 1473895947297,
+    "path" : "~/GitHub/bootcamp-2016/PV_BootcampExercise1.R",
+    "project_path" : "PV_BootcampExercise1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
