@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "setwd()\ngetwd\ngetwd()\n?lm\nctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)\ntrt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)\ngroup <- gl(2, 10, 20, labels = c(\"Ctl\",\"Trt\"))\nweight <- c(ctl, trt)\nlm.D9 <- lm(weight ~ group)\nlm.D90 <- lm(weight ~ group - 1) # omitting intercept\nanova(lm.D9)\n#copying and pasting example for lm to figure out how it works or how I can use it(above)\nls()\nrm(group)\nls()\nrm(list = ls())\nls()\nlist()\n#rm (list = ls ()) allows us to remove all variables we have been working with from our directory \n#source command allows linking to an r script that has a function you've already written\nsource()\nlist.files()\ntt <- read.tree(\"tree.tre\")\n#opening the file ape, checking files in the folder, then assigning the tree \nlibrary(ape)\nlist.files()\ntt\nstr(tt)\n?read.tree\nattributes(tt)\n?%%\n",
+    "created" : 1473877288510.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1227168388",
+    "id" : "67EB9098",
+    "lastKnownWriteTime" : 1473880571,
+    "last_content_update" : 1473881381152,
+    "path" : "~/GitHub/bootcamp-2016/InClassRDemo.R",
+    "project_path" : "InClassRDemo.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
