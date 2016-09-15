@@ -46,6 +46,7 @@ barplot(
         xlab="Average Height (inches)",
         ylab="count"
 )
+#sequence at names.arg is 1 less than the sequence length for the "bins" because the number of boundaries is 1 more than the number of counts
 
 legend(
   0, 300, c("n=100","n=1000"),fill= c("red", "blue")
