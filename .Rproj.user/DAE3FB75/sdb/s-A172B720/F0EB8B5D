@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "x <-c(1, 5, 10, 45)\nx\nmean(x)\nx*2\nsum(x)\nx=sample(20)\n\n#give it a vector and take sample of size at random; can specify with or without replacement\nsample(x, size=2)\n\n#allows draw at random from my vector\nsample(x[1:3], size=2, replace=TRUE)\n\n#allows for drawing samples and gives a higher chance of getting values twice\nx=seq(50,60)\nx[2:4] #specifying picking up the 2nd to 4th value of x\nx[c(2,4)]# to pick up specific values without values in between, create a vector within the square brackets\nx[-2] #gives you the whole vector but omits the 2nd element/ whichever element has the - before it\n\n\n\n#use a vector and turn the vector into a matrix by speifyng how many rows and columns we want\nx=1:10\ny <- matrix(x, nrow=2, ncol=5)\ny\n#use square bracket notation to pull out a particular row(vector) or cell\ny[2,]#pulling out the second row whole row without specifying column\n#to fill in a matrix by row instead of by column, can specify\ny <- matrix(x, nrow=2, ncol=5, byrow=TRUE)#now you filled rows first!\ny\n#continuing these notes now assuming we filled by column instead\nt(y) #transpose and flip the matrix a little\n\n\n\n#dataframes and dealing with missing values NA\nx<- c(5, 3, 4, NA)\nmean(x)\nmean(x, na.rm=TRUE) #allows ignore the NA value and still perform function\n\n#goal= take mean of row of vector\n#initializing the value of z then make a for loop to use mean function for matrix y, row i\nz<-rep(0,2)\n\nfor (i in c(1:2)) {\n  z[i] <- mean(y[i,])\n}\n#do the same function with \"Apply\" function\napply(y, 1, mean) #1 is rows and 2 is to check mean of column, can look up on help file\n\npwd\n\n#subset will apply a logical test and returns what falls into that subset (i.e. whole row)\n",
+    "created" : 1473964728550.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2290407536",
+    "id" : "F0EB8B5D",
+    "lastKnownWriteTime" : 1473961639,
+    "last_content_update" : 1473961639,
+    "path" : "~/GitHub/bootcamp-2016/InClassNotesThurs.R",
+    "project_path" : "InClassNotesThurs.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
