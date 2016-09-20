@@ -1,8 +1,38 @@
 #1. using code from class
+snpsDataFrame=read.table('hapmaps.txt',header=TRUE)
+snps=as.matrix(snpsDataFrame) #convert data frame to matrix
+freq=sum(testSNP,na.rm=TRUE)/(2.0*sum(!is.na(testSNP)))
+#freq of minor allele ^
+#functions for data
+calc_freq=function(x){
+  return(sum(x,na.rm=TRUE)/(2.0*sum(!is.na(x))))
+}
 
+calc_het=function(x){
+  return(sum(x==1,na.rm=TRUE)/(sum(!is.na(x))))
+}
+#apply function to each SNP
+freq=apply(snps,1,calc_freq) #creates a vector with 1 value per SNP
+het=apply(snps,1,calc_het)
 
+#applying chi square to the values
+compute_chisquare_2=function(x){
+  freq=sum(x,na.rm=TRUE)/(2.0*sum(!is.na(x)))
+  cnt0=sum(x==0,na.rm=TRUE)
+  cnt1=sum(x==1,na.rm=TRUE)
+  cnt2=sum(x==2,na.rm=TRUE)
+  obscnts=c(cnt0,cnt1,cnt2)
+  #print(obscnts)
+  n=sum(obscnts)
+  #here we use the built-in function for the chi-sq distribution:
+  exp_probs=c((1-freq)^2,2*freq*(1-freq),freq^2) #note, here we don't multiply by n
+  chisq<-chisq.test(obscnts,p=exp_probs, correct = FALSE)$statistic
+  return(chisq)
+}
+chisqs=apply(snps,1,compute_chisquare)
+chisqs2=apply(snps,1,compute_chisquare_2)
 #a. save p-values in vector called pvals, in code
-
+pvals=pchisq(chisqs,1,lower.tail=FALSE)
 
 #b. proportion of p-values from test using vector called pvals
     #<0.05 is 181/ total pvals = 0.04509218
@@ -10,6 +40,8 @@ pvals=pchisq(chisqs,1,lower.tail=FALSE)
 
 signifthres<-0.05
 sum(pvals<signifthres)/length(pvals)
+#ans is 181/ total pvals= 0.04509218
+
 # proportions of pvalues <0.05 is 181/ total pvals = 0.04509218
 signifthres<-0.01
 sum(pvals<signifthres)/length(pvals)
@@ -53,4 +85,4 @@ abline(0, 1)
 
 
 
-#2
+#2 
