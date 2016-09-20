@@ -85,4 +85,30 @@ abline(0, 1)
 
 
 
-#2 
+#QUESTION 2
+#PART A -----load phenotypes and store in dataframe zz
+read.table ('phenotypes.txt', header=TRUE)
+zz <- read.table ('phenotypes.txt', header=TRUE)
+
+
+#PART B-----find value such that 25% of individuals have phenotypes less than value
+#Q1 value using quantile
+
+quantile(zz$glucose_mmolperL, 0.25) #specifying to look at glucose column only
+ #value with 25% of distribution below= 4.768756
+
+#PART C----find value of phenotypes with 25% of phenotypes ABOVE(75% below)
+
+quantile(zz$glucose_mmolperL, 0.75)
+
+#value solved= 7.354975
+
+
+#PART D----- Density plot of distr of phenotypes; add verticle lines denoting 25% tailand 75% tail
+
+hist(
+  zz$glucose_mmolperL, 
+  xlab= "glucose levels (mm/L)", main= "Density plot of Glucose level phenotypes"
+  )
+abline(v=quantile(zz$glucose_mmolperL, 0.25), col= "red")
+abline(v=quantile(zz$glucose_mmolperL, 0.75), col= "blue" )

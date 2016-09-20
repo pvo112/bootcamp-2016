@@ -97,9 +97,38 @@ summary(aov(weight~Diet*Time+Error(Chick),data=data))
 
 #QUESTION 4-------- plot effects of diet on chick growth
 #plotting time by weight and color code diet
-plot(as.numeric (data$time), data$weight)
-cols
-#5 create empty plot to plot lines for each chick
+plot(as.numeric (data$time), data$weight, pch=19)
+
+cols= sub('1', "blue", data$diet)#setting up the colors to diet coding
+cols= sub('2', "hotpink", cols)
+cols= sub('3', "purple", cols)
+cols= sub ('4', "green", cols)
+#currently if ploted, everything is in black
+#figure out how to plot in color
+
+plot(as.numeric(
+  data$time), data$weight, 
+     xlab= "time", ylab= "weight", main= "Effect of Diet on ChiCkWeight", 
+     col=cols, #adding color to the scale
+     pch=19, las=1, cex.axis=1.5, cex.lab=1.5#pch 19 colors in circles
+     ) #pch19 colors in circles
+legend (
+  "topleft", title="Diet", 
+        legend=unique(data$diet), 
+        text.col= c("blue", "hotpink", "purple", "green")
+        )
+
+#Question 5----- create empty plot to plot lines for each chick
 #plot(NA, xlim=c(min value x, max value x), ylim = c (min value of y, max value of y))
 #for (ii in 1:50) { use.rows=}
 
+plot(NA, ylim=c(0,370), xlim=c(0,21), 
+     xlab="Time", ylab="Weight", 
+     main="Individual Chick Growth Through Time")
+colors=rainbow(50)
+
+for(c in 1:50) {
+  use.rows=which(data$Chick == c)
+  lines(x=data$Time[use.rows],
+        y=data$weight[use.rows], col=colors[c])
+}

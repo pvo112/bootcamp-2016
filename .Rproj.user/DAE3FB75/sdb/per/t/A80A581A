@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#1. using code from class\nsnpsDataFrame=read.table('hapmaps.txt',header=TRUE)\nsnps=as.matrix(snpsDataFrame) #convert data frame to matrix\nfreq=sum(testSNP,na.rm=TRUE)/(2.0*sum(!is.na(testSNP)))\n#freq of minor allele ^\n#functions for data\ncalc_freq=function(x){\n  return(sum(x,na.rm=TRUE)/(2.0*sum(!is.na(x))))\n}\n\ncalc_het=function(x){\n  return(sum(x==1,na.rm=TRUE)/(sum(!is.na(x))))\n}\n#apply function to each SNP\nfreq=apply(snps,1,calc_freq) #creates a vector with 1 value per SNP\nhet=apply(snps,1,calc_het)\n\n#applying chi square to the values\ncompute_chisquare_2=function(x){\n  freq=sum(x,na.rm=TRUE)/(2.0*sum(!is.na(x)))\n  cnt0=sum(x==0,na.rm=TRUE)\n  cnt1=sum(x==1,na.rm=TRUE)\n  cnt2=sum(x==2,na.rm=TRUE)\n  obscnts=c(cnt0,cnt1,cnt2)\n  #print(obscnts)\n  n=sum(obscnts)\n  #here we use the built-in function for the chi-sq distribution:\n  exp_probs=c((1-freq)^2,2*freq*(1-freq),freq^2) #note, here we don't multiply by n\n  chisq<-chisq.test(obscnts,p=exp_probs, correct = FALSE)$statistic\n  return(chisq)\n}\nchisqs=apply(snps,1,compute_chisquare)\nchisqs2=apply(snps,1,compute_chisquare_2)\n#a. save p-values in vector called pvals, in code\npvals=pchisq(chisqs,1,lower.tail=FALSE)\n\n#b. proportion of p-values from test using vector called pvals\n    #<0.05 is 181/ total pvals = 0.04509218\npvals=pchisq(chisqs,1,lower.tail=FALSE)\n\nsignifthres<-0.05\nsum(pvals<signifthres)/length(pvals)\n#ans is 181/ total pvals= 0.04509218\n\n# proportions of pvalues <0.05 is 181/ total pvals = 0.04509218\nsignifthres<-0.01\nsum(pvals<signifthres)/length(pvals)\n#proportion of pvalues <0.01 = 0.01021425\nsignifthres<-0.001\nsum(pvals<signifthres)/length(pvals)\n#proportion of pvalues <0.001= 0.00124564\n\n\n#c.save the number of p-values you have as num_pval\nnum_pval <- length(pvals)\n\n#d. calc the vector of expected P-values for the chi-square test.\nexp_pvals <-rep(0, num_pval)\n\nfor (n in 1:length(pvals)) \n{ exp_pvals[n] <- n/num_pval}\n\n#e. sort P-values\nsort_pvals <-sort(pvals, decreasing =FALSE)\n\n\n#f. find -log10 of observed and expected P-values\nlog_sort_pvals <- -log10(sort_pvals)\nlog_exp_pvals <- -log10(exp_pvals)\n\n#g. Plot QQ Plot plotting \"log_sort_pvals vs log_exp_pvals\n\nplot(log_exp_pvals, log_sort_pvals, \n     xlab=\"-log10(expected P-value)\", \n     ylab= \"-log10(expected P-value)\"\n     )\n\n#h. Add diagonal line to QQ plot\nabline(0, 1)\n\n\n\n\n\n\n\n\n#QUESTION 2\n#PART A -----load phenotypes and store in dataframe zz\nread.table ('phenotypes.txt', header=TRUE)\nzz <- read.table ('phenotypes.txt', header=TRUE)\n\n\n#PART B-----find value such that 25% of individuals have phenotypes less than value\n#Q1 value using quantile\n\nquantile(zz$glucose_mmolperL, 0.25) #specifying to look at glucose column only\n #value with 25% of distribution below= 4.768756\n\n#PART C----find value of phenotypes with 25% of phenotypes ABOVE(75% below)\n\nquantile(zz$glucose_mmolperL, 0.75)\n\n#value solved= 7.354975\n\n\n#PART D----- Density plot of distr of phenotypes; add verticle lines denoting 25% tailand 75% tail\n\nhist(\n  zz$glucose_mmolperL, \n  xlab= \"glucose levels (mm/L)\", main= \"Density plot of Glucose level phenotypes\"\n  )\nabline(v=quantile(zz$glucose_mmolperL, 0.25), col= \"red\")\nabline(v=quantile(zz$glucose_mmolperL, 0.75), col= \"blue\" )",
+    "created" : 1474249214827.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1421407377",
+    "id" : "A80A581A",
+    "lastKnownWriteTime" : 1474403673,
+    "last_content_update" : 1474403673351,
+    "path" : "~/GitHub/bootcamp-2016/LohmuellerAssignment2.R",
+    "project_path" : "LohmuellerAssignment2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
